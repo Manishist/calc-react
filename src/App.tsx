@@ -6,12 +6,24 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Home from './pages/Home';
 import Register from './pages/Register';
 import Calculator from './components/calculator/calculator';
+import { getCookie } from './utils';
+import Dashboard from './components/dashboard/Dashboard';
 
 function App() {
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [projectHistory, setProjectHistory] = useState<string[]>([]);
     const [projectName, setProjectName] = useState("");
+    const [showEmail, setShowEmail] = useState('');
+    const [showProjectName, setShowProjectName] = useState('')
+    const [isAdmin, setIsAdmin] = useState('')
+
+    useEffect(() => {
+        // Get the email from the cookie and update the state
+        setShowEmail(getCookie(`${name}email`));
+        setProjectName(getCookie(`${name}project`));
+        setIsAdmin(getCookie(`${name}admin`))
+    }, [name]);
 
     useEffect(() => {
         (
@@ -29,16 +41,17 @@ function App() {
     }, []); 
 
     return (
-        <div className="App">
+        <div className="App" style={{backgroundColor: "#52a7c1", backgroundImage: "linear-gradient(315deg, #52a7c1 0%, #b3f6d8 74%)", height: "100vh"}}>
             <BrowserRouter>
-                <Nav name={name} setName={setName} />
-
+                <Nav name={name} setName={setName} isAdmin={isAdmin}/>
                 <main className="form-signin">
                     <Routes>
-                        <Route path="/" element={<Home name={name} email={email} setProjectHistory={setProjectHistory} projectName={projectName} setProjectName={setProjectName}/>} />
+                        <Route path="/" element={<Login setName={setName} email={email} setEmail={setEmail}/>} />
                         <Route path="/login" element={<Login setName={setName} email={email} setEmail={setEmail}/>} />
+                        <Route path="/home" element={<Home name={name} email={email} setProjectHistory={setProjectHistory} projectName={projectName} setProjectName={setProjectName} showEmail={showEmail} isAdmin={isAdmin}/>} />
                         <Route path="/register" element={<Register />} />
-                        <Route path="/calculator" element={<Calculator projectHistory={projectHistory} setProjectHistory={setProjectHistory} projectName={projectName} email={email}/>} />
+                        <Route path="/calculator" element={<Calculator projectHistory={projectHistory} setProjectHistory={setProjectHistory} projectName={projectName} showEmail={showEmail} showProjectName={showProjectName} isAdmin={isAdmin}/>} />
+                        <Route path="/dashboard" element={<Dashboard isAdmin={isAdmin}/>} />
                     </Routes>
                 </main>
             </BrowserRouter>

@@ -20,27 +20,29 @@ const Register = () => {
             })
         });
 
-        navigate('/login'); // Redirect to '/login'
+        navigate('/login');
     }
 
     return (
-        <form onSubmit={submit}>
-            <h1 className="h3 mb-3 fw-normal">Please register</h1>
+        <div className="login-container">
+            <form onSubmit={submit} style={{ maxWidth: '400px', display: "flex", flexDirection: "column" }}>
+                <div style={{fontFamily: "sans-serif", fontWeight: "600", fontSize: "24px", textAlign: "center", color: "#012169", marginTop: "15px", marginBottom: "15px"}}>Please Register</div>
 
-            <input className="form-control" placeholder="Name" required
-                onChange={e => setName(e.target.value)}
-            />
+                <input style={{height: "44px", border: "1px solid #D0D5DD", boxShadow: "0px 1px 2px rgba(16, 24, 40, 0.05)", borderRadius: "8px", marginBottom: "15px"}} className="form-control" placeholder="Name" required
+                    onChange={e => setName(e.target.value)}
+                />
 
-            <input type="email" className="form-control" placeholder="Email address" required
-                onChange={e => setEmail(e.target.value)}
-            />
+                <input type="email" style={{height: "44px", border: "1px solid #D0D5DD", boxShadow: "0px 1px 2px rgba(16, 24, 40, 0.05)", borderRadius: "8px", marginBottom: "15px"}} className="form-control" placeholder="Email address" required
+                    onChange={e => setEmail(e.target.value)}
+                />
 
-            <input type="password" className="form-control" placeholder="Password" required
-                onChange={e => setPassword(e.target.value)}
-            />
+                <input type="password" style={{height: "44px", border: "1px solid #D0D5DD", boxShadow: "0px 1px 2px rgba(16, 24, 40, 0.05)", borderRadius: "8px", marginBottom: "15px"}} className="form-control" placeholder="Password" required
+                    onChange={e => setPassword(e.target.value)}
+                />
 
-            <button className="w-100 btn btn-lg btn-primary" type="submit">Submit</button>
-        </form>
+                <button style={{padding: "10px 18px", gap: "8px", width: "100%", height: "44px", background: "#17B169", border: "1px solid #17B169", boxShadow: "0px 1px 2px rgba(16, 24, 40, 0.05)", borderRadius: "8px", color: "white"}}  type="submit">Sign Up</button>
+            </form>
+        </div>
     );
 };
 

@@ -1,48 +1,54 @@
 import React from 'react';
 import {Link} from "react-router-dom";
 
-const Nav = (props: { name: string, setName: (name: string) => void }) => {
+interface NavProps {
+    name: string;
+    setName: (name: string) => void;
+    isAdmin: string;
+}
+
+const Nav: React.FC<NavProps> = ({ name, setName, isAdmin }) => {
     const logout = async () => {
         await fetch('http://localhost:8000/api/logout', {
             method: 'POST',
             headers: {'Content-Type': 'application/json'},
             credentials: 'include',
         });
-
-        props.setName('');
+        setName('');
     }
 
     let menu;
-
-    if (props.name === '') {
+    console.log("namee", name)
+    if (name === '' || name === undefined ) {
         menu = (
-            <ul className="navbar-nav me-auto mb-2 mb-md-0">
-                <li className="nav-item active">
-                    <Link to="/login" className="nav-link">Login</Link>
-                </li>
-                <li className="nav-item active">
-                    <Link to="/register" className="nav-link">Register</Link>
-                </li>
-            </ul>
+            <>
+                <div style={{backgroundColor: "#1570EF"}}>
+                    <Link to="/login" >Login</Link>
+                </div>
+                <div style={{backgroundColor: "#17B169"}}>
+                    <Link to="/register" >Register</Link>
+                </div>
+            </>
         )
     } else {
         menu = (
-            <ul className="navbar-nav me-auto mb-2 mb-md-0">
-                <li className="nav-item active">
-                    <Link to="/login" className="nav-link" onClick={logout}>Logout</Link>
-                </li>
-            </ul>
+            <>
+                <div style={{backgroundColor: "#17B169"}}>
+                    <Link to="/home">Home</Link>
+                </div>
+                {isAdmin == "true" && <div style={{backgroundColor: "#17B169"}}>
+                    <Link to="/dashboard">Admin Dashboard</Link>
+                </div>}
+                <div style={{backgroundColor: "#C60C30"}}>
+                    <Link to="/login" onClick={logout}>Logout</Link>
+                </div>
+            </>
         )
     }
 
     return (
-        <nav className="navbar navbar-expand-md navbar-dark bg-dark mb-4">
-            <div className="container-fluid">
-                <Link to="/" className="navbar-brand">Home</Link>
-                <div>
-                    {menu}
-                </div>
-            </div>
+        <nav className='nav-bar' style={{display: "flex", padding: "20px"}}>
+            {menu}
         </nav>
     );
 };

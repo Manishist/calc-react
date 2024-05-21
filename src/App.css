@@ -27,3 +27,27 @@
   border-top-left-radius: 0;
   border-top-right-radius: 0;
 }
+.login-container {
+  border: 1px solid transparent;
+  padding: 20px;
+  background-color: white;
+  border-radius: 8px;
+}
+.home-container{
+  border: 1px solid transparent;
+  padding: 20px;
+  background-color: white;
+  border-radius: 8px;
+  width: 635px;
+  margin-left: -150px;
+}
+.nav-bar div{
+  margin-right: 12px;
+  color: white;
+  padding: 6px;
+  border-radius: 4px;
+}
+.nav-bar a{
+  text-decoration: none;
+  color: white;
+}
