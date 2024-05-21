@@ -39,7 +39,7 @@ function App() {
     }, []); 
 
     return (
-        <div className="App" style={{backgroundColor: "#52a7c1", backgroundImage: "linear-gradient(315deg, #52a7c1 0%, #b3f6d8 74%)", height: "auto"}}>
+        <div className="App" style={{backgroundColor: "#52a7c1", backgroundImage: "linear-gradient(315deg, #52a7c1 0%, #b3f6d8 74%)", height: "100vh"}}>
             <BrowserRouter>
                 <Nav name={name} setName={setName} isAdmin={isAdmin}/>
                 <main className="form-signin">
