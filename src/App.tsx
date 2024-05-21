@@ -15,11 +15,9 @@ function App() {
     const [projectHistory, setProjectHistory] = useState<string[]>([]);
     const [projectName, setProjectName] = useState("");
     const [showEmail, setShowEmail] = useState('');
-    const [showProjectName, setShowProjectName] = useState('')
     const [isAdmin, setIsAdmin] = useState('')
 
     useEffect(() => {
-        // Get the email from the cookie and update the state
         setShowEmail(getCookie(`${name}email`));
         setProjectName(getCookie(`${name}project`));
         setIsAdmin(getCookie(`${name}admin`))
@@ -50,7 +48,7 @@ function App() {
                         <Route path="/login" element={<Login setName={setName} email={email} setEmail={setEmail}/>} />
                         <Route path="/home" element={<Home name={name} email={email} setProjectHistory={setProjectHistory} projectName={projectName} setProjectName={setProjectName} showEmail={showEmail} isAdmin={isAdmin}/>} />
                         <Route path="/register" element={<Register />} />
-                        <Route path="/calculator" element={<Calculator projectHistory={projectHistory} setProjectHistory={setProjectHistory} projectName={projectName} showEmail={showEmail} showProjectName={showProjectName} isAdmin={isAdmin}/>} />
+                        <Route path="/calculator" element={<Calculator projectHistory={projectHistory} setProjectHistory={setProjectHistory} projectName={projectName} showEmail={showEmail} isAdmin={isAdmin}/>} />
                         <Route path="/dashboard" element={<Dashboard isAdmin={isAdmin}/>} />
                     </Routes>
                 </main>

@@ -22,17 +22,12 @@ const Login = ({ email, setEmail, setName }: { email: string, setEmail: (email: 
         const content = await response.json();
 
         if (response.ok) {
-            // Store the email in a cookie
-            console.log("xxx content", content)
             setCookie(`${content.name}` + "email", content.email, 1)
             setCookie(`${content.name}` + "admin", content.is_admin, 1)
-            // Set name in parent component
             setName(content.name);
 
-            // Redirect to home page after successful login
             navigate('/home');
         } else {
-            // Handle login failure
             console.error('Login failed:', content);
             alert('Login failed, please try again.');
         }

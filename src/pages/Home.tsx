@@ -19,13 +19,12 @@ const Home: React.FC<HomeProps> = ({ name, email, setProjectHistory, projectName
 
 
     useEffect(() => {
-        // Fetch user projects when the component mounts
         fetch('http://localhost:8000/api/user-projects', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify({ user_email: showEmail }) // Send user email as payload
+            body: JSON.stringify({ user_email: showEmail })
         })
             .then(response => {
                 if (!response.ok) {
@@ -34,13 +33,10 @@ const Home: React.FC<HomeProps> = ({ name, email, setProjectHistory, projectName
                 return response.json();
             })
             .then(data => {
-                // Set the fetched user projects to state
                 setUserProjects(data.projects);
-                console.log("xxx", data.projects)
             })
             .catch(error => {
                 console.error('Error fetching user projects:', error.message);
-                // Handle error scenario
             });    
         }, [showEmail]); 
 
@@ -79,7 +75,6 @@ const Home: React.FC<HomeProps> = ({ name, email, setProjectHistory, projectName
         })
         .catch(error => {
             console.error('Error fetching user projects:', error.message);
-            // Handle error scenario
         })
     }
 
@@ -109,12 +104,10 @@ const Home: React.FC<HomeProps> = ({ name, email, setProjectHistory, projectName
             return response.json();
         })
         .then(data => {
-            console.log('Project created successfully:', data);
             navigate('/calculator');
         })
         .catch(error => {
             console.error('There was a problem creating the project:', error.message);
-            // Handle error scenario, such as showing an alert to the user
             alert('There was a problem creating the project. Please try again.');
         });
         } else {

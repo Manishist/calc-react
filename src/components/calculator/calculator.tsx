@@ -6,7 +6,6 @@ interface CalculatorProps {
     setProjectHistory: (history: string[]) => void;
     projectName: string;
     showEmail: string;
-    showProjectName: string;
     isAdmin: string
 }
 
@@ -14,13 +13,12 @@ const Calculator: React.FC<CalculatorProps> = ({ projectHistory, setProjectHisto
     const [display, setDisplay] = useState('');
 
     useEffect(() => {
-        // Fetch user projects when the component mounts
         fetch('http://localhost:8000/api/project-history', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify({ user_email: showEmail, project_name: projectName }) // Send user email as payload
+            body: JSON.stringify({ user_email: showEmail, project_name: projectName })
         })
             .then(response => {
                 if (!response.ok) {
@@ -29,12 +27,10 @@ const Calculator: React.FC<CalculatorProps> = ({ projectHistory, setProjectHisto
                 return response.json();
             })
             .then(data => {
-                // Set the fetched user projects to state
                 setProjectHistory(data.history)
             })
             .catch(error => {
                 console.error('Error fetching user projects:', error.message);
-                // Handle error scenario
             });    
         }, [showEmail]); 
 
@@ -51,19 +47,16 @@ const Calculator: React.FC<CalculatorProps> = ({ projectHistory, setProjectHisto
             const result = eval(display).toString();
             const newHistoryItem = `${display} = ${result}`;
             
-            // Update local project history
             const updatedHistory = [...projectHistory, newHistoryItem];
             setProjectHistory(updatedHistory);
             setDisplay(result);
     
-            // Prepare payload for API call
             const payload = {
                 user_email: showEmail,
                 project_name: projectName,
                 history: updatedHistory
             };
     
-            // Make PUT API call to update project history
             fetch('http://localhost:8000/api/update-project-history', {
                 method: 'PUT',
                 headers: {
@@ -82,7 +75,6 @@ const Calculator: React.FC<CalculatorProps> = ({ projectHistory, setProjectHisto
             })
             .catch(error => {
                 console.error('There was a problem updating the project history:', error.message);
-                // Optionally handle error scenario, e.g., showing an alert to the user
             });
     
         } catch (error) {

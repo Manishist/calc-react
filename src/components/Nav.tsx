@@ -18,7 +18,6 @@ const Nav: React.FC<NavProps> = ({ name, setName, isAdmin }) => {
     }
 
     let menu;
-    console.log("namee", name)
     if (name === '' || name === undefined ) {
         menu = (
             <>
@@ -36,7 +35,7 @@ const Nav: React.FC<NavProps> = ({ name, setName, isAdmin }) => {
                 <div style={{backgroundColor: "#17B169"}}>
                     <Link to="/home">Home</Link>
                 </div>
-                {isAdmin == "true" && <div style={{backgroundColor: "#17B169"}}>
+                {isAdmin == "true" && <div style={{backgroundColor: "orange"}}>
                     <Link to="/dashboard">Admin Dashboard</Link>
                 </div>}
                 <div style={{backgroundColor: "#C60C30"}}>
