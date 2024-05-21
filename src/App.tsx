@@ -39,7 +39,7 @@ function App() {
     }, []); 
 
     return (
-        <div className="App" style={{backgroundColor: "#52a7c1", backgroundImage: "linear-gradient(315deg, #52a7c1 0%, #b3f6d8 74%)", height: "100vh"}}>
+        <div className="App" style={{backgroundColor: "#52a7c1", backgroundImage: "linear-gradient(315deg, #52a7c1 0%, #b3f6d8 74%)", height: "auto"}}>
             <BrowserRouter>
                 <Nav name={name} setName={setName} isAdmin={isAdmin}/>
                 <main className="form-signin">
@@ -49,7 +49,7 @@ function App() {
                         <Route path="/home" element={<Home name={name} email={email} setProjectHistory={setProjectHistory} projectName={projectName} setProjectName={setProjectName} showEmail={showEmail} isAdmin={isAdmin}/>} />
                         <Route path="/register" element={<Register />} />
                         <Route path="/calculator" element={<Calculator projectHistory={projectHistory} setProjectHistory={setProjectHistory} projectName={projectName} showEmail={showEmail} isAdmin={isAdmin}/>} />
-                        <Route path="/dashboard" element={<Dashboard isAdmin={isAdmin}/>} />
+                        <Route path="/dashboard" element={<Dashboard isAdmin={isAdmin} name={name} showEmail={showEmail}/>} />
                     </Routes>
                 </main>
             </BrowserRouter>
