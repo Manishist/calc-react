@@ -24,19 +24,26 @@ function App() {
     }, [name]);
 
     useEffect(() => {
-        (
-            async () => {
+        const fetchUserInfo = async () => {
+            try {
                 const response = await fetch('http://localhost:8000/api/user', {
                     headers: { 'Content-Type': 'application/json' },
                     credentials: 'include',
                 });
 
-                const content = await response.json();
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
 
+                const content = await response.json();
                 setName(content.name);
+            } catch (error) {
+                console.error("Error fetching user info:", error);
             }
-        )();
-    }, []); 
+        };
+
+        fetchUserInfo();
+    }, []);
 
     return (
         <div className="App" style={{backgroundColor: "#52a7c1", backgroundImage: "linear-gradient(315deg, #52a7c1 0%, #b3f6d8 74%)", height: "100vh"}}>

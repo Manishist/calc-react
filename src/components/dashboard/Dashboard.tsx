@@ -59,7 +59,7 @@ const Dashboard: React.FC<DashboardProps> = ({ isAdmin, name, showEmail }) => {
                 "You do not have access to this page"
             ) : (
                 <div style={{ display: "flex", justifyContent: "space-around", alignItems: "flex-start", gap: "20px", flexWrap: "wrap" }}>
-                    <div style={{ backgroundColor: "white", padding: "20px", flex: "1 1 300px" }}>
+                    <div style={{ backgroundColor: "wheat", padding: "20px", flex: "1 1 300px" }}>
                         <h3>Total Consumption of All Users</h3>
                         <ResponsiveContainer width="100%" height={300}>
                             <PieChart>
@@ -84,7 +84,7 @@ const Dashboard: React.FC<DashboardProps> = ({ isAdmin, name, showEmail }) => {
                         </ResponsiveContainer>
                     </div>
 
-                    <div style={{ backgroundColor: "white", padding: "20px", flex: "1 1 300px" }}>
+                    <div style={{ backgroundColor: "wheat", padding: "20px", flex: "1 1 300px" }}>
                         <h3>Total Daily Consumption of All Users</h3>
                         <ResponsiveContainer width="100%" height={300}>
                             <PieChart>
@@ -109,7 +109,7 @@ const Dashboard: React.FC<DashboardProps> = ({ isAdmin, name, showEmail }) => {
                         </ResponsiveContainer>
                     </div>
 
-                    <div style={{ backgroundColor: "white", padding: "20px", flex: "1 1 600px" }}>
+                    <div style={{ backgroundColor: "wheat", padding: "20px", flex: "1 1 600px" }}>
                         <h3>Total vs Daily Consumption of All Users</h3>
                         <ResponsiveContainer width="100%" height={400}>
                             <BarChart data={barGraphData} margin={{ top: 20, right: 30, left: 20, bottom: 5 }}>
@@ -124,12 +124,12 @@ const Dashboard: React.FC<DashboardProps> = ({ isAdmin, name, showEmail }) => {
                         </ResponsiveContainer>
                     </div>
 
-                    <div style={{ backgroundColor: "white", padding: "20px", flex: "1 1 300px" }}>
+                    <div style={{ backgroundColor: "wheat", padding: "20px", flex: "1 1 300px" }}>
                         <h3>Logged In Days in Last 7 Days</h3>
                         <ul>
                             {userData.map((user: any, index: number) => (
                                 <li key={index}>
-                                    {user.name}: {user.logged_in_last_7_days} days
+                                    {user.name}: {user.logged_in_last_7_days}
                                 </li>
                             ))}
                         </ul>
